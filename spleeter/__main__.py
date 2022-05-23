@@ -121,6 +121,9 @@ def separate(
     from .audio.adapter import AudioAdapter
     from .separator import Separator
 
+    import pdb;
+    pdb.set_trace()
+
     configure_logger(verbose)
     if deprecated_files is not None:
         logger.error(
