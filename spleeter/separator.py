@@ -293,6 +293,8 @@ class Separator(object):
         """
         if not waveform.shape[-1] == 2:
             waveform = to_stereo(waveform)
+        import pdb;
+        pdb.set_trace()
         prediction_generator = self._get_prediction_generator()
         # NOTE: update data in generator before performing separation.
         self._data_generator.update_data(
@@ -316,6 +318,7 @@ class Separator(object):
                 (Optional) string describing the waveform (e.g. filename).
         """
         backend: str = self._params["stft_backend"]
+        import pdb; pdb.set_trace()
         if backend == STFTBackend.TENSORFLOW:
             return self._separate_tensorflow(waveform, audio_descriptor)
         elif backend == STFTBackend.LIBROSA:
