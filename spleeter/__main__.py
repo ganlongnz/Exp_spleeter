@@ -69,8 +69,7 @@ def train(
     params = load_configuration(params_filename)
     session_config = tf.compat.v1.ConfigProto()
     session_config.gpu_options.per_process_gpu_memory_fraction = 0.45
-    import pdb;
-    pdb.set_trace()
+
     estimator = tf.estimator.Estimator(
         model_fn=model_fn,
         model_dir=params["model_dir"],
@@ -84,6 +83,8 @@ def train(
             keep_checkpoint_max=2,
         ),
     )
+    import pdb;
+    pdb.set_trace()
     input_fn = partial(get_training_dataset, params, audio_adapter, audio_path)
     train_spec = tf.estimator.TrainSpec(
         input_fn=input_fn, max_steps=params["train_max_steps"]
@@ -120,9 +121,6 @@ def separate(
     """
     from .audio.adapter import AudioAdapter
     from .separator import Separator
-
-    import pdb;
-    pdb.set_trace()
 
     configure_logger(verbose)
     if deprecated_files is not None:
