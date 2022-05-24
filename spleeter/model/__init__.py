@@ -419,11 +419,10 @@ class EstimatorSpecBuilder(object):
         # (avoid extension artifacts but not conservative separation)
         elif extension == "zeros":
             mask_shape = tf.shape(mask)
-            import pdb; pdb.set_trace()
             extension_row = tf.zeros((mask_shape[0], mask_shape[1], 1, mask_shape[-1]))
 
-            sess = tf.compat.v1.InteractiveSession()
-            print(mask_shape.eval())
+            # sess = tf.compat.v1.InteractiveSession()
+            # print(mask_shape.eval())
 
         else:
             raise ValueError(f"Invalid mask_extension parameter {extension}")
