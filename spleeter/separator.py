@@ -113,6 +113,7 @@ class Separator(object):
             MWF (bool):
                 (Optional) `True` if MWF should be used, `False` otherwise.
         """
+        import pdb; pdb.set_trace()
         self._params = load_configuration(params_descriptor)
         self._sample_rate = self._params["sample_rate"]
         self._MWF = MWF
@@ -128,6 +129,7 @@ class Separator(object):
         else:
             self._pool = None
         self._tasks = []
+        import pdb; pdb.set_trace()
         self._params["stft_backend"] = STFTBackend.resolve(stft_backend)
         self._data_generator = DataGenerator()
 
@@ -236,6 +238,7 @@ class Separator(object):
             saver = tf.compat.v1.train.Saver()
             provider = ModelProvider.default()
             model_directory: str = provider.get(self._params["model_dir"])
+            import pdb; pdb.set_trace()
             latest_checkpoint = tf.train.latest_checkpoint(model_directory)
             self._session = tf.compat.v1.Session()
             saver.restore(self._session, latest_checkpoint)

@@ -82,6 +82,7 @@ def get_training_dataset(
         chunk_duration=audio_params.get("chunk_duration", 20.0),
         random_seed=audio_params.get("random_seed", 0),
     )
+    import pdb; pdb.set_trace()
     return builder.build(
         audio_params.get("train_csv"),
         cache_directory=audio_params.get("training_cache"),
@@ -327,6 +328,7 @@ class DatasetBuilder(object):
 
     def expand_path(self, sample):
         """Expands audio paths for the given sample."""
+        # import pdb; pdb.set_trace()
         return dict(
             sample,
             **{
@@ -546,6 +548,7 @@ class DatasetBuilder(object):
         """
         TO BE DOCUMENTED.
         """
+        # import pdb; pdb.set_trace()
         dataset = dataset_from_csv(csv_path)
         dataset = self.compute_segments(dataset, n_chunks_per_song)
         # Shuffle data
@@ -557,6 +560,8 @@ class DatasetBuilder(object):
                 reshuffle_each_iteration=True,
             )
         # Expand audio path.
+
+        # import pdb; pdb.set_trace()
         dataset = dataset.map(self.expand_path)
         # Load waveform, compute spectrogram, and filtering error,
         # K bins frequencies, and waveform.

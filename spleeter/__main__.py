@@ -54,8 +54,6 @@ def train(
     Train a source separation model
     """
     import tensorflow as tf
-    import pdb;
-    pdb.set_trace()
 
     from .audio.adapter import AudioAdapter
     from .dataset import get_training_dataset, get_validation_dataset
@@ -93,6 +91,8 @@ def train(
     evaluation_spec = tf.estimator.EvalSpec(
         input_fn=input_fn, steps=None, throttle_secs=params["throttle_secs"]
     )
+    import pdb;
+    pdb.set_trace()
     logger.info("Start model training")
     tf.estimator.train_and_evaluate(estimator, train_spec, evaluation_spec)
     ModelProvider.writeProbe(params["model_dir"])
@@ -132,6 +132,7 @@ def separate(
         )
         raise Exit(20)
     audio_adapter: AudioAdapter = AudioAdapter.get(adapter)
+    import pdb; pdb.set_trace()
     separator: Separator = Separator(
         params_filename, MWF=mwf, stft_backend=stft_backend
     )
